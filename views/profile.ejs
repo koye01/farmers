@@ -1,0 +1,58 @@
+<%- include("./partials/header") %>
+<h1>welcome to <%= user.username%>'s page </h1>
+<h3><%=user.email%></h3>
+<p><%=user.description%></p>
+<p>
+    <%if(currentUser && user.username == currentUser.username){%>
+        <a disabled="disabled"><button>follow <%=user.username%></button></a>
+        <%=user.followers.length%> followers
+        <%} else if(!currentUser) {%>
+            <a  href="/follow/<%=user.id%>"> <button>follow <%=user.username%></button></a>
+                    <%=user.followers.length%> followers
+            <%}else if(currentUser && unique.username != currentUser.username && user.username != currentUser.username){%>
+                <a  href="/follow/<%=user.id%>"><button>follow <%=user.username%></button> </a>
+                <%=user.followers.length%> followers
+            <%}%>
+    </p>
+
+        <% for(var checkFollower of unique){%>
+            <%if(currentUser && checkFollower.username == currentUser.username){%>
+                <a class="btn btn-success" disabled="disabled"><button>following <%=user.username%></button></a>
+            <p id="danger">
+                <a href="/unfollow/<%=user.id%>" class="btn btn-danger"><button>Unfollow <%= user.username%></button></a>
+            </p>
+            
+            <%}%>
+        <%}%>
+
+        <div>
+            <%product.forEach(function(pro){%>
+                <%if(user.username === pro.author.username){%>
+                    <div class="profile">
+                        <h2>
+                                <%=pro.name%> for sales
+                        </h2>
+                        <img src="<%=pro.image[0]%>" alt="<%=pro.name%>">
+                        
+                            <div>
+                                <%=pro.fullnames%>
+                            </div>
+                            <div>
+                                <%=pro.description%>
+                            </div> 
+                            
+                                
+                            
+                        <h3><a href="/<%=pro._id%>"> click to view more</a></h3>
+                    </div>
+                            
+                        
+                <%}%>
+                
+            <%}) %>
+        </div>
+      
+             
+    
+        
+    </div>
