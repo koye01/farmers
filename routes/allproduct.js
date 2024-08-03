@@ -19,10 +19,66 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage});
 var multiUpload = upload.fields([{ name: "image", maxCount: 5}]);
 
-//redirect page
+
+//livestock page
+router.get("/livestocks", async function(req, res){
+    try{
+        var livestocks = await Product.find({"category": "Livestocks"});
+        res.render("categories/livestocks", {livestocks});
+    }catch(err){
+        console.log(err)
+    }
+});
+//vegetable page
+router.get("/vegetables", async function(req, res){
+    try{
+        var veggies = await Product.find({"category": "Vegetables"});
+        res.render("categories/vegetables", {veggies});
+    }catch(err){
+        console.log(err)
+    }
+});
+//seedling page
+router.get("/seedlings", async function(req, res){
+    try{
+        var seedlings = await Product.find({"category": "Seedlings"});
+        res.render("categories/seedlings", {seedlings});
+    }catch(err){
+        console.log(err)
+    }
+});
+//food page
+router.get("/food", async function(req, res){
+    try{
+        var food = await Product.find({"category": "food"});
+        res.render("categories/food", {food});
+    }catch(err){
+        console.log(err)
+    }
+});
+//farmequipment page
+router.get("/farmequips", async function(req, res){
+    try{
+        var farmequips = await Product.find({"category": "Farm equipments"});
+        res.render("categories/farmequips", {farmequips});
+    }catch(err){
+        console.log(err)
+    }
+});
+//food page
+router.get("/others", async function(req, res){
+    try{
+        var others = await Product.find({"category": "Others"});
+        res.render("categories/others", {others});
+    }catch(err){
+        console.log(err)
+    }
+});
+
+//index page
 router.get("/", async function(req, res){
     try{
-        res.redirect("/allproduct");
+        res.render("index");
     }catch(err){
         console.log(err)
     }
@@ -48,6 +104,7 @@ router.get("/addnew", middleware.isLoggedIn, async function(req, res){
 //Adding new post (post request)
 router.post("/", multiUpload, async function(req, res){
     try{
+        var category = req.body.category;
         var name = req.body.name;
         var price = req.body.price;
         var arr = req.files.image;
@@ -57,7 +114,7 @@ router.post("/", multiUpload, async function(req, res){
             id: req.user._id,
             username: req.user.username
         }
-        var allproduct = {name: name, price: price, image: image, description: description, author: author};
+        var allproduct = {category: category, name: name, price: price, image: image, description: description, author: author};
         var newProduce = Product.create(allproduct)
         var user = await User.findById(req.user._id).populate('followers').exec();
         var newNotification = {

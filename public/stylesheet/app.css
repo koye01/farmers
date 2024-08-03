@@ -177,7 +177,7 @@ body{
     margin: auto;
     text-align: center;
 }
-.form-style input, .form-style textarea{
+.form-style input, .form-style textarea, select {
     width: 100%;
 }
 input[type=file]{

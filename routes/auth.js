@@ -13,6 +13,7 @@ var Notification = require("../models/notification");
 //     description: "These are the early day old chicks that i use to sell"
 // });
 
+
 router.get("/register", async function(req, res){
     res.render("form/register");
 });

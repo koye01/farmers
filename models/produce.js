@@ -7,6 +7,7 @@ var productSchema = new mongoose.Schema({
     description: String,
     price: String,
     phone: String,
+    category: String,
     comments:[
         {
             type: mongoose.Schema.Types.ObjectId,

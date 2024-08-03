@@ -1,0 +1,20 @@
+body {
+    text-align: center;
+    /* background-image: url("/pics/chicks.jpg"); */
+    color: rgb(24, 23, 22);
+}
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+.cover {
+    margin-top: 20vh;
+}
+/* .frontline {
+    
+    margin-top: 40px;
+    background-color: sienna;
+} */
