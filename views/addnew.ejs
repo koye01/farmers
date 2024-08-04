@@ -3,7 +3,8 @@
 <form action="/" method="post" enctype="multipart/form-data">
     <div class="form-style">
         <label>Product's category</label>
-        <select name="category">
+        <select name="category" required>
+            <option disabled selected value> -- select an option -- </option>
             <option value="Livestocks">Livestocks</option>
             <option value="Seedlings">Seedlings</option>
             <option value="Vegetables">Vegetables</option>

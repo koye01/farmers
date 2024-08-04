@@ -112,19 +112,30 @@ router.get("/notifications", middleware.isLoggedIn, async function(req, res){
         console.log(error);
     }
 });
-//notification address
+//Product notification address
 router.get('/notifications/:id', middleware.isLoggedIn, async function(req, res) {
     try {
+        var user = await User.findById(req.params.id);
         var notification = await Notification.findById(req.params.id);
         notification.isRead = true;
         notification.save();
-        res.redirect('/'+ notification.postId);
+        res.redirect("/" +notification.post.productId);
     } catch(err) {
         console.log(err);
-        res.redirect('back');
     }
 });
-
+//comment notification address
+router.get('/notifications/com/:id', middleware.isLoggedIn, async function(req, res) {
+    try {
+        var user = await User.findById(req.params.id);
+        var notification = await Notification.findById(req.params.id);
+        notification.isRead = true;
+        notification.save();
+        res.redirect("/" +notification.comment.productId);
+    } catch(err) {
+        console.log(err);
+    }
+});
 
 
 

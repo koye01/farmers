@@ -6,6 +6,7 @@ var User    = require("../models/user");
 var Notification = require("../models/notification");
 var multer = require("multer");
 var path = require("path");
+const { json } = require("express");
 middleware = require("../middleware/index");
 var storage = multer.diskStorage({
     destination: function(req, file, cb){
@@ -115,12 +116,13 @@ router.post("/", multiUpload, async function(req, res){
             username: req.user.username
         }
         var allproduct = {category: category, name: name, price: price, image: image, description: description, author: author};
-        var newProduce = Product.create(allproduct)
+        var newProduce = Product.create(allproduct);
+        var dataid = (await newProduce).id;
         var user = await User.findById(req.user._id).populate('followers').exec();
         var newNotification = {
             post: {
                 username: req.user.username,
-                productId: newProduce.id
+                productId: dataid
             }
         }
             for(var follower of user.followers) {
@@ -128,6 +130,7 @@ router.post("/", multiUpload, async function(req, res){
                 follower.notifications.push(notification);
                 follower.save();
             }
+            
             //redirect back to allproducts page
             res.redirect("/allproduct");
     }catch(err){
