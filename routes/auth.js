@@ -21,9 +21,11 @@ router.post("/register", async function(req, res){
         try{
         var username = req.body.username;
         var email = req.body.email;
+        phone = req.body.phone;
         var description = req.body.description;
         var fullname = req.body.fullname;
-        var newUser = {username: username, email: email, secretCode: secretCode, description: description, fullname: fullname};
+        var newUser = {username: username, email: email, secretCode: secretCode, 
+            description: description, fullname: fullname, phone: phone};
         var secretCode = req.body.secretCode;
         if(secretCode === "1980"){
             newUser.isAdmin = true;
@@ -137,6 +139,14 @@ router.get('/notifications/com/:id', middleware.isLoggedIn, async function(req, 
     }
 });
 
-
+//Profile edit page
+router.get("/user/:id/edit", async function(req, res){
+    try{
+        var user = await User.findById(req.params.id);
+        res.render("profileedit", {user})
+    }catch(err){
+        console.log(err);
+    }
+})
 
 module.exports = router;

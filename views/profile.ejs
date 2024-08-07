@@ -4,7 +4,7 @@
 <p><%=user.description%></p>
 <p>
     <%if(currentUser && user.username == currentUser.username){%>
-        <a disabled="disabled"><button>follow <%=user.username%></button></a>
+        <a disabled="disabled"><button disabled>follow <%=user.username%></button></a>
         <%=user.followers.length%> followers
         <%} else if(!currentUser) {%>
             <a  href="/follow/<%=user.id%>"> <button>follow <%=user.username%></button></a>
@@ -13,6 +13,8 @@
                 <a  href="/follow/<%=user.id%>"><button>follow <%=user.username%></button> </a>
                 <%=user.followers.length%> followers
             <%}%>
+            
+            
     </p>
 
         <% for(var checkFollower of unique){%>
@@ -24,7 +26,9 @@
             
             <%}%>
         <%}%>
-
+        <p>
+            <button> <a href="<%=user._id%>/edit">edit profile</a></button>
+        </p>
         <div>
             <%product.forEach(function(pro){%>
                 <%if(user.username === pro.author.username){%>

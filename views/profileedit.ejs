@@ -1,11 +1,29 @@
 <%- include("./partials/header") %>
-<h1>edit <%=edit.username%>'s profile</h1>
-<form action="/<%= edit.id%>?_method=PUT" method="POST">
-    <label>fullname</label>
-        <input type="text" name="update[fullname]" value="<%=edit.fullname%>">
+<h1>edit <%=user.username%>'s profile</h1>
+<form action="/<%= user.id%>?_method=PUT" method="POST">
+    <div>
+        <label>username</label>
+        <input type="text" name="update[username]" value="<%=user.username%>" disabled>
+    </div>
+    <div>
+        <label>email</label>
+        <input type="email" name="update[email]" value="<%=user.email%>" disabled>
+    </div>
+    <div>
+        <label>fullname</label>
+        <input type="text" name="update[fullname]" value="<%=user.fullname%>">
+    </div>
+    <div>
+        <label>description</label>
+        <textarea type="text" name="update[description]"> <%=user.description%> </textarea>
+    </div>
+    <div>
+        <button>
+            update
+        </button>
+    </div>
     
-    <label>description</label>
-        <textarea type="text" name="update[description]" value="<%=edit.description%>"></textarea>
+    
     
     
 </form>
