@@ -19,7 +19,7 @@
 
         <% for(var checkFollower of unique){%>
             <%if(currentUser && checkFollower.username == currentUser.username){%>
-                <a class="btn btn-success" disabled="disabled"><button>following <%=user.username%></button></a>
+                <a class="btn btn-success" disabled="disabled"><button disabled>following <%=user.username%></button></a>
             <p id="danger">
                 <a href="/unfollow/<%=user.id%>" class="btn btn-danger"><button>Unfollow <%= user.username%></button></a>
             </p>
@@ -29,6 +29,14 @@
         <p>
             <button> <a href="<%=user._id%>/edit">edit profile</a></button>
         </p>
+
+        <div class="profilePicture">
+            <img src="<%= user.image%>" alt="<%=user.username%>'s picture">
+        <h3><i>profile picture</i></h3>
+        <p><%= user.phone%></p>
+        </div>
+        
+
         <div>
             <%product.forEach(function(pro){%>
                 <%if(user.username === pro.author.username){%>

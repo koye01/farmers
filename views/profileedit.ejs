@@ -1,29 +1,40 @@
 <%- include("./partials/header") %>
-<h1>edit <%=user.username%>'s profile</h1>
-<form action="/<%= user.id%>?_method=PUT" method="POST">
-    <div>
-        <label>username</label>
-        <input type="text" name="update[username]" value="<%=user.username%>" disabled>
+<h1>edit <%=editProf.username%>'s profile</h1>
+<form action="/user/<%=editProf.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <div class="form-style">
+        <div>
+            <label>username</label>
+            <input type="text" name="update[username]" value="<%=editProf.username%>" disabled>
+        </div>
+        <div>
+            <label>fullname</label>
+            <input type="text" name="fullname" value="<%=editProf.fullname%>" disabled>
+        </div>
+        <div>
+            <label>email</label>
+            <input type="email" name="email" value="<%=editProf.email%>" disabled>
+        </div>
+        <div>
+            <label>Phone number</label>
+            <input type="number" name="phone" value="<%=editProf.phone%>">
+        </div>
+
+        <div>
+            <label>profile picture</label>
+            <input type="file" name="image" placeholder="profile image" alt="user.image">
+        </div>
+        
+        <div>
+            <label>description</label>
+            <textarea type="text" name="description"> <%=editProf.description%> </textarea>
+        </div>
+        <div>
+            <button>
+                update
+            </button>
+        </div>
     </div>
-    <div>
-        <label>email</label>
-        <input type="email" name="update[email]" value="<%=user.email%>" disabled>
-    </div>
-    <div>
-        <label>fullname</label>
-        <input type="text" name="update[fullname]" value="<%=user.fullname%>">
-    </div>
-    <div>
-        <label>description</label>
-        <textarea type="text" name="update[description]"> <%=user.description%> </textarea>
-    </div>
-    <div>
-        <button>
-            update
-        </button>
-    </div>
-    
-    
+  
     
     
 </form>

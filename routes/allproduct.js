@@ -79,7 +79,9 @@ router.get("/others", async function(req, res){
 //index page
 router.get("/", async function(req, res){
     try{
-        res.render("index");
+        var product = await Product.find({});
+        var user = await User.find({});
+        res.render("index",{product, user});
     }catch(err){
         console.log(err)
     }
@@ -113,7 +115,8 @@ router.post("/", multiUpload, async function(req, res){
         var description = req.body.description;
         var author ={
             id: req.user._id,
-            username: req.user.username
+            username: req.user.username,
+            phone: req.user.phone
         }
         var allproduct = {category: category, name: name, price: price, image: image, description: description, author: author};
         var newProduce = Product.create(allproduct);
@@ -162,7 +165,7 @@ router.get("/:id/edit", middleware.isOwner, async function(req, res){
 router.put("/:id", middleware.isOwner, async function(req, res){
     try{
         var edit = await Product.findByIdAndUpdate(req.params.id, req.body.update);
-        res.redirect("/" + req.params.id);
+        res.redirect("/" + req.params.id, {edit});
     }catch(err){
         console.log(err)
     }

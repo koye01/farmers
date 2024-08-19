@@ -16,7 +16,7 @@ middlewareObj.isOwner = async function(req, res, next){
     try{
 var edit =await Product.findById(req.params.id);
     if(req.isAuthenticated()){
-        if(edit.author.id == req.user._id || req.user.isAdmin){
+        if(edit.author.id.equals(req.user._id) || req.user.isAdmin){
             next();
         }else{
             res.redirect("back");

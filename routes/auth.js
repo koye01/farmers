@@ -5,6 +5,18 @@ var Product = require("../models/produce");
 var User = require("../models/user");
 var passport = require("passport");
 var Notification = require("../models/notification");
+var path = require("path");
+var multer = require("multer");
+var storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, "public/profile")
+    },
+    filename: function(req, file, cb){
+        //console.log(file),
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+});
+var upload = multer({storage: storage});
 
 //essential route
 // Product.create({
@@ -142,11 +154,26 @@ router.get('/notifications/com/:id', middleware.isLoggedIn, async function(req, 
 //Profile edit page
 router.get("/user/:id/edit", async function(req, res){
     try{
-        var user = await User.findById(req.params.id);
-        res.render("profileedit", {user})
+        var editProf = await User.findById(req.params.id);
+        res.render("profileedit", {editProf})
     }catch(err){
         console.log(err);
     }
-})
+});
+
+//Profile post edit page
+router.put("/user/:id", upload.single("image"), async function(req, res){
+    try{
+        var image = "/profile/" + req.file.filename;
+        var fullname = req.body.fullname;
+        var description = req.body.description;
+        var phone = req.body.phone
+        var update = {image: image, fullname: fullname, description: description, phone: phone}
+        var user = await User.findByIdAndUpdate(req.params.id, update);
+        res.redirect("/user/"+ req.params.id);
+    }catch(err){
+        console.log(err);
+    }
+});
 
 module.exports = router;

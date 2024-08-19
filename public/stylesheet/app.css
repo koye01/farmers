@@ -1,13 +1,15 @@
 *{
-    margin: auto 5px;
+    margin: auto 0px;
 }
 body{
+    background-color: rgb(207, 183, 183);
     color: blue;
     text-align: center;
     align-content: center;
     max-width: 800px;
     margin: auto;
 }
+
 
 /* Navigation bar */
 .nav1{
@@ -16,8 +18,9 @@ body{
     margin: 0px 0px;
     /* max-width: 800px; */
     text-align: right;
-    border-bottom: thick solid rgb(207, 201, 192);
-    background-color: rgb(227, 233, 231);
+    border-bottom: thick solid white;
+    background-color: rgb(12, 12, 12);
+    color: white;
 }
 .nav1 p {
     /* font-size: 20; */
@@ -36,6 +39,7 @@ body{
     z-index: 1;
     top: 35px;
     height: 50px;
+    margin-right: 20px;
 }
 .homepage{
     text-transform: uppercase;
@@ -43,15 +47,19 @@ body{
     margin-right: 10%;
     float: left;
 }
+.homepage h2 a{
+    color: green;
+}
 .navbar a{
+    color: white;
     text-decoration: none;
 }
 .navbar a:hover{
-    background-color: rgba(125, 178, 204, 0.808);
-    padding: 3px 0px;
+    background-color: rgba(243, 116, 116, 0.808);
+    padding: 5px auto;
     margin-top: 0px;
     margin-bottom: 0px;
-    border-bottom: thick solid rgb(115, 162, 224);
+    /* border-bottom: thick solid rgb(115, 162, 224); */
 }
 .check-btn{
     display: block;
@@ -119,7 +127,13 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.front-page h1{
+    color: green;
+}
 
+.front-page p{
+    color: red;
+}
 /* add new */
 .add-new{
     margin: 5px 3px;
@@ -132,7 +146,7 @@ body{
 }
 .add-new button{
     margin: 10px 0px;
-    padding: 5px 5px;
+    padding: 13px 7px;
     background-color: rgb(29, 28, 28);
 }
 
@@ -147,30 +161,38 @@ body{
    }
    
 .content{
+    border: thin solid white;
     float: left;
     width: 250px;
+    text-align: center;
     margin: auto 5px;
    /* border: thin solid #555; */
-    box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
-    padding-bottom: 2px;
+    /* box-shadow: 10px 10px 10px rgba(0,0,0,0.1); */
+    padding: 0px 0px;
 }
 .content img{
-    width: 240px;
+    text-align: center;
+    padding: 0px 0px;
+    margin: 0px 0px;
+    width: 100%;
 }
 
 .content-desc {
-    margin: auto;
-    width: 250px;
+    background-color: rgb(37, 25, 25);
+    color: white;
+    margin: auto 0px;
+    width: auto;
     text-align: center;
+    padding: 10px 10px;
 }
 
 .content a {
     text-decoration: none;
 }
 
-.content button{
-    margin: 10px 0px;
-}
+/* .content button{
+    margin: 0px 0px;
+} */
 /* form width at addnew */
 .form-style{
     width: 100%;
@@ -193,16 +215,7 @@ input[type=file]{
     display: block;
 }
 
-/* Navigation bar */
-.nav1{
-    height: 35px;
-    padding: 0px 5px;
-    margin: 0px 0px;
-    /* max-width: 800px; */
-    text-align: right;
-    border-bottom: thick solid rgb(207, 201, 192);
-    background-color: rgb(227, 233, 231);
-}
+
 .showpage{
     /* border:  thick solid black; */
     border-bottom: thick solid #b3a5a5;
@@ -215,24 +228,36 @@ input[type=file]{
     display: flex;
 }
 .frontBtn {
+    margin-bottom: 0px;
+    width: 100%;
+    height: 40px;
     border: thin solid rgb(212, 191, 127);
-    box-shadow: 5px 5px 10px#444;
+    /* box-shadow: 5px 5px 10px#444; */
     font-size: medium;
     padding: 2px 5px;
     color: #f1ecec;
-    background-color: rgb(81, 82, 77);
+    background-color: rgb(37, 25, 25);
+    /* background-color: rgb(81, 82, 77); */
 }
 a {
     text-decoration: none;
 }
-/* .delete-button{
+.edit-button{
+    border: thick solid rgb(212, 191, 127);
+    box-shadow: 5px 5px 10px#444;
+    font-size: medium;
+    padding: 2px 5px;
+    color: #0e0d0d;
+    background-color: white;
+}
+.delete-button{
     border: thick solid rgb(212, 191, 127);
     box-shadow: 5px 5px 10px#444;
     font-size: medium;
     padding: 2px 5px;
     color: #f1ecec;
     background-color: red;
-} */
+}
 #button-float{
     display: inline;
 }
@@ -311,7 +336,6 @@ a {
     width: 100%;
 }
 .profile h2 {
-    width: 100%;
     background-color: #a5a2a2;
 }
 .profile h3 {
@@ -319,6 +343,24 @@ a {
 }
 .profile a{
     color: white;
+}
+.profilePicture{
+    background-image: url("/pics/kitten.jpg");
+    width: 90%;
+    height: 300px;
+    border: thick solid red;
+    border-radius: 50%;
+    margin: 50px 1%;
+    padding: 15px 5px;
+    text-align: center;
+}
+.profilePicture i, .profilePicture p {
+    color: red;
+}
+.profilePicture img{
+    border-radius: 50%;
+    height: 250px;
+    width: 200px;
 }
 .comment-link a{
     color: blue;
@@ -385,21 +427,22 @@ a {
     width: 90%;
     margin: auto;
     text-align: center;
+    background-color: rgb(102, 95, 84);
+    /* background-image: url("/pics/flower.jpg"); */
    }
     .content{
         width: 90%;
         box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
         padding-bottom: 2px;
-        margin: auto;
+        margin: 10px auto;
         text-align: center;
         
     }
     .content img{
-        align-content: center;
-        width: 97.5%;
+        text-align: center;
     }
     .content-desc{
-        width: 80%;
+        width: auto;
         text-align: center;
     }
     .hideContent {

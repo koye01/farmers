@@ -65,6 +65,9 @@ body{
   display: inline;
  
 }
+.para {
+    margin-right: 20px;
+}
 .right{
      margin-left: 10px;
 }
