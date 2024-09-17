@@ -195,12 +195,35 @@ body{
 } */
 /* form width at addnew */
 .form-style{
+    color: blue;
+    border: thin solid rgb(107, 82, 82);
     width: 100%;
-    margin: auto;
     text-align: center;
+}
+/* .form-style label{
+    color: green;
+} */
+.form-set{
+    background-image: url("/pics/insect.jpg");
+    padding: 40px 20px;
 }
 .form-style input, .form-style textarea, select {
     width: 100%;
+}
+input[type=password],input[type=text] {
+    height: 30px;
+}
+.show{
+    width: 100%;
+    text-align: start;
+}
+.show button{
+    margin: 10px auto;
+}
+input[type=checkbox]{
+    height: 30px;
+    width: 20px;
+    margin: 5px auto;
 }
 input[type=file]{
     max-width: 100%;
@@ -238,6 +261,9 @@ input[type=file]{
     color: #f1ecec;
     background-color: rgb(37, 25, 25);
     /* background-color: rgb(81, 82, 77); */
+}
+.frontBtn a{
+    color: greenyellow;
 }
 a {
     text-decoration: none;
@@ -288,7 +314,8 @@ a {
 
 .slider {
     width: 100%;
-    height: 610px;
+    /* height: 610px; */
+    height: 510px;
     position: relative;
     margin-left: 0%;
 }
@@ -296,7 +323,7 @@ a {
 .slider img {
     margin-left: 0%;
     width: 100%;
-    height: 600px;
+    max-height: 500px;
     position: absolute;
     top: 0;
     left: 0;
@@ -325,10 +352,17 @@ a {
 .dot:hover {
     background-color: #717171;
 }
+.descp {
+    border: thin solid white;
+ padding: 5px 10px;
+}
 .profile {
-    width: 40%;
-    margin: 5px 10px;
+    padding: 0px 0px;
+    width: 44%;
+    margin: 10px 2%;
     float: left;
+    /* border-left: thin solid brown; */
+    box-shadow: 5px 5px 5px brown;
     /* display: flex; */
     flex-wrap: wrap;
 }
@@ -336,28 +370,70 @@ a {
     width: 100%;
 }
 .profile h2 {
-    background-color: #a5a2a2;
+    padding: 5px 10px;
+    background-color: rgb(99, 150, 23);
+    /* background-color: #a2a2a5; */
 }
 .profile h3 {
-    background-color: #1a0247;
+    padding: 10px 0px;
+    background-color: rgb(99, 150, 23);
+}
+.descLink p{
+    background-color: greenyellow;
+    padding: 10px 5px;
 }
 .profile a{
-    color: white;
+    color: blue;
+}
+.profile-body{
+    width: 90%;
+    margin: 0px 10px;
 }
 .profilePicture{
     background-image: url("/pics/kitten.jpg");
-    width: 90%;
+    width: 100%;
     height: 300px;
-    border: thick solid red;
-    border-radius: 50%;
-    margin: 50px 1%;
+    border: thin solid white;
+    /* border-radius: 50%; */
+    margin: 10px 1%;
     padding: 15px 5px;
     text-align: center;
 }
-.profilePicture i, .profilePicture p {
+
+.edit-profile{
+    float: left;
+    margin-bottom: 0px;
+    width: auto;
+    height: 40px;
+    border: thin solid rgb(212, 191, 127);
+    /* box-shadow: 5px 5px 10px#444; */
+    font-size: medium;
+    padding: 2px 5px;
+    background-color: rgb(37, 25, 25);
+}
+.edit-profile a{
+    color: white;
+}
+.profile-details{
+    padding: 10px 10px;
+    /* border: thin solid red; */
+}
+.profile-info{
+    color: white;
+    margin: 0px;
+    width: 100%;
+    background-color: rgb(99, 150, 23);
+    box-shadow: 5px 5px 5px brown;
+    /* background-color: rgb(15, 15, 15); */
+}
+.profilePicture i {
+    /* background-color: white;
+    margin: 5px auto;
+    padding: 5px 15px; */
     color: red;
 }
 .profilePicture img{
+    border: 10px solid rgb(46, 32, 32);
     border-radius: 50%;
     height: 250px;
     width: 200px;
@@ -372,6 +448,7 @@ a {
 }
 /* hidden by default */
 .dropdown-content{
+    margin: 0px 0px;
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -380,6 +457,7 @@ a {
     z-index: 2;
 }
 .dropdown-content a {
+    margin: 0px 0px;
     background-color: rgb(148, 66, 8);
     color: black;
     text-align: center;
@@ -390,7 +468,43 @@ a {
 .dropdown:hover .dropdown-content{
     display: block;
 }
+.listType{
+    width: 250px;
+    height: 500px;
+    text-align: center;
+    margin: auto 5px;
+   /* border: thin solid #555; */
+    /* box-shadow: 10px 10px 10px rgba(0,0,0,0.1); */
+    padding: 0px 0px;
 
+}
+.listType img{
+    height: 200px;
+}
+
+#approve a, p a{
+    color: white;
+}
+
+.listType .content{
+    margin: 10px 0px;
+}
+#approve{
+    margin: 0px 0px;
+    padding: 10px 5px;
+    background-color: green;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+#delete{
+    width: 100%;
+    margin: 0px 0px;
+    padding: 10px 5px;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
 @media(max-width: 600px){
     /* .homepage {
         display: block;
@@ -412,7 +526,11 @@ a {
     /* max-width: 800px; */
     text-align: right;
     border-bottom: thick solid rgb(207, 201, 192);
-    background-color: rgb(227, 233, 231);
+    background-color: rgb(161, 236, 199);
+    color: black;
+}
+.para a{
+    color: rgb(12, 3, 3);
 }
 .logo{
     opacity: 0.5;

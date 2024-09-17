@@ -2,23 +2,31 @@
 <h2>user signup form</h2>
 <form action="/register" method="POST">
     <div class="form-style" >
-        <label class="form-style">Prefered username</label>
-        <input type="text" name="username" placeholder="username">
-        <label>Fullname</label>
-        <input type="text" name="fullname" placeholder="fullname">
-        <label>profile picture</label>
-        <input type="file" name="image" placeholder="profile image" alt="user.image">
-        <label>Telephone</label>
-        <input type="text" name="phone" placeholder="phone number">
-        <label>profile's description</label>
-        <textarea type="text" name="description" placeholder="brief description about your profile"></textarea>
-        <label>Email</label>
-        <input type="email" name="email" placeholder="email">
-        <label>Admin code</label>
-        <input type="number" name="secretCode" placeholder="pick any number">
-        <label>Password</label>
-        <input type="password" name="password" placeholder="password">
-        <button>submit</button>
+        <div class="form-set">
+            <label>Prefered username</label>
+            <input type="text" name="username" placeholder="username">
+            <label>Fullname</label>
+            <input type="text" name="fullname" placeholder="fullname">
+            <label>profile picture</label>
+            <input type="file" name="image" placeholder="profile image" alt="user.image">
+            <label>Telephone</label>
+            <input type="text" name="phone" placeholder="phone number">
+            <label>profile's description</label>
+            <textarea type="text" name="description" placeholder="brief description about your profile"></textarea>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="email">
+            <label>Admin code</label>
+            <input type="number" name="secretCode" placeholder="pick any number">
+            <label>Password</label>
+            <input id="tog" type="password" name="password" placeholder="password">
+            <div class="show">
+                <input type="checkbox" onclick="Toggle()"><strong>show password</strong><br>
+                <button>submit</button>
+            </div>
+            
+        </div>
+        
     </div>
 </form>
     
+<script src="myjs.js"></script>

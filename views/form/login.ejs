@@ -1,12 +1,21 @@
 <%- include("../partials/header") %>
 <h1>login page</h1>
-    <form action="/login" method="POST">
-        <div class="form-style">
-            <label>Username</label>
-            <input type="text" name="username" placeholder="username">
-            <label>password</label>
-            <input type="password" name="password" placeholder="password">
-            <button>Submit</button>
-        </div>
-        
-    </form>
+        <form action="/login" method="POST">
+            <div class="form-style">
+                <div class="form-set">
+                        <label><strong>Username</strong></label>
+                        <input type="text" name="username" placeholder="username">
+                        <label><strong>password</strong></label>
+                        <input id="tog" type="password" name="password" placeholder="password">
+                        <div class="show">
+                            <input type="checkbox" onclick="Toggle()"><br>
+                            <strong>show password</strong><br>
+                            <button>Submit</button>
+                        </div>
+                </div>
+                
+            </div>
+            
+        </form>
+    
+<script src="myjs.js"></script>

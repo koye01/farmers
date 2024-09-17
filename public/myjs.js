@@ -13,3 +13,13 @@ function changeSlide(n) {
     imgs[currentImg].style.opacity = 1;
     dots[currentImg].className += " active";
 }
+
+function Toggle() {
+    var showpassword = document.getElementById("tog");
+    if(showpassword.type === "password"){
+        showpassword.type = "text";
+    }
+    else{
+        showpassword.type = "password";
+    }
+}

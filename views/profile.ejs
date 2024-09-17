@@ -1,70 +1,84 @@
 <%- include("./partials/header") %>
-<h1>welcome to <%= user.username%>'s page </h1>
-<h3><%=user.email%></h3>
-<p><%=user.description%></p>
-<p>
-    <%if(currentUser && user.username == currentUser.username){%>
-        <a disabled="disabled"><button disabled>follow <%=user.username%></button></a>
-        <%=user.followers.length%> followers
-        <%} else if(!currentUser) {%>
-            <a  href="/follow/<%=user.id%>"> <button>follow <%=user.username%></button></a>
+<div class="profile-body">
+    <h1>welcome to <%= user.username%>'s page </h1>
+
+    <p>
+        <%if(currentUser && user.username == currentUser.username){%>
+            <a disabled="disabled"><button disabled  class="edit-button">follow <%=user.username%></button></a>
+            <%=user.followers.length%> followers
+            <%} else if(!currentUser) {%>
+                <a  href="/follow/<%=user.id%>"> <button class="edit-button">follow <%=user.username%></button></a>
+                        <%=user.followers.length%> followers
+                <%}else if(currentUser && unique.username != currentUser.username && user.username != currentUser.username){%>
+                    <a  href="/follow/<%=user.id%>"><button>follow <%=user.username%></button> </a>
                     <%=user.followers.length%> followers
-            <%}else if(currentUser && unique.username != currentUser.username && user.username != currentUser.username){%>
-                <a  href="/follow/<%=user.id%>"><button>follow <%=user.username%></button> </a>
-                <%=user.followers.length%> followers
-            <%}%>
-            
-            
-    </p>
-
-        <% for(var checkFollower of unique){%>
-            <%if(currentUser && checkFollower.username == currentUser.username){%>
-                <a class="btn btn-success" disabled="disabled"><button disabled>following <%=user.username%></button></a>
-            <p id="danger">
-                <a href="/unfollow/<%=user.id%>" class="btn btn-danger"><button>Unfollow <%= user.username%></button></a>
-            </p>
-            
-            <%}%>
-        <%}%>
-        <p>
-            <button> <a href="<%=user._id%>/edit">edit profile</a></button>
-        </p>
-
-        <div class="profilePicture">
-            <img src="<%= user.image%>" alt="<%=user.username%>'s picture">
-        <h3><i>profile picture</i></h3>
-        <p><%= user.phone%></p>
-        </div>
-        
-
-        <div>
-            <%product.forEach(function(pro){%>
-                <%if(user.username === pro.author.username){%>
-                    <div class="profile">
-                        <h2>
-                                <%=pro.name%> for sales
-                        </h2>
-                        <img src="<%=pro.image[0]%>" alt="<%=pro.name%>">
-                        
-                            <div>
-                                <%=pro.fullnames%>
-                            </div>
-                            <div>
-                                <%=pro.description%>
-                            </div> 
-                            
-                                
-                            
-                        <h3><a href="/<%=pro._id%>"> click to view more</a></h3>
-                    </div>
-                            
-                        
                 <%}%>
                 
-            <%}) %>
-        </div>
+                
+        </p>
+
+            <% for(var checkFollower of unique){%>
+                <%if(currentUser && checkFollower.username == currentUser.username){%>
+                    <a disabled="disabled"><button disabled class="edit-button">following <%=user.username%></button></a>
+                <p id="danger">
+                    <a href="/unfollow/<%=user.id%>"><button class="delete-button">Unfollow <%= user.username%></button></a>
+                </p>
+                
+                <%}%>
+            <%}%>
+            
+
+            <div class="profilePicture">
+                <img src="<%= user.image%>" alt="<%=user.username%>'s picture">
+            <h3><i>profile picture</i></h3>
+            
+            </div>
+            <div class="profile-info">
+                <div>
+                    <button class="edit-profile"> 
+                        <a href="<%=user._id%>/edit">Edit profile</a>
+                    </button>
+                </div>
+                <div class="profile-details">
+                    <p>Phone number: <%= user.phone%></p>
+                    <p>Email: <%=user.email%></p>
+                    <p>Brief description: <%=user.description%></p>
+                </div>
+            </div>
+            
+            
+
+            <div>
+                <%product.forEach(function(pro){%>
+                    <%if(user.username === pro.author.username){%>
+                        <div class="profile">
+                            <h2>
+                                    <%=pro.name%> for sales
+                            </h2>
+                            <img src="<%=pro.image[0]%>" alt="<%=pro.name%>">
+                            
+                                <div>
+                                    <%=pro.fullnames%>
+                                </div>
+
+                                <div class="descLink">
+                                    <p>
+                                        <%=pro.description%>
+                                    </p> 
+                                   
+                                    <h3><a href="/<%=pro._id%>"> click to view more</a></h3>
+                                </div>
+                                
+                        </div>
+                                
+                            
+                    <%}%>
+                    
+                <%}) %>
+            </div>
+</div>
+
       
              
     
-        
-    </div>
+    

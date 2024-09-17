@@ -8,6 +8,7 @@ var productSchema = new mongoose.Schema({
     price: String,
     phone: String,
     category: String,
+    adminpost: {type: Boolean, default: false},
     comments:[
         {
             type: mongoose.Schema.Types.ObjectId,

@@ -1,13 +1,14 @@
 <head>
+    <link rel="icon" type="image/svg+xml" href="pics/logo.png">
     <link rel="stylesheet" href="stylesheet/cover.css">
 </head>
 <div class="productUser">
-        <form>
-            <input type="text" name="product" placeholder="search for a product">
+        <form action="/search" method="POST">
+            <input type="text" name="productSearch" placeholder="search for a product">
             <button>search</button>
         </form>
-        <form>
-            <input type="text" name="user" placeholder="search for a user">
+        <form action="/usersearch" method="POST">
+            <input type="text" name="userSearch" placeholder="search for a user">
             <button>search</button>
         </form>
 </div>
@@ -21,13 +22,13 @@
 </div>
 <div class="cover">
     <div class="headings">
-        <h1>Welcome to Koye Agricultural Garden</h1>
-        
+        <h1>Your number one hub for the sales of Agricultural commodities in Nigeria</h1>
+     </div>   
         <h3>
             Available categories of Agricultural commodities at farm gate price
         </h3>
 
-    </div>
+    
         <ul>
             <li><a class="frontline" href="/livestocks"><h1>Livestocks</h1></a></li><hr>
             <li><a class="frontline" href="/seedlings"><h1>Seedlings</h1></a></li><hr>
@@ -35,6 +36,7 @@
             <li><a class="frontline" href="/food"><h1>Food</h1></a></li><hr>
             <li><a class="frontline" href="/farmequips"><h1>Farm equipments</h1></a></li><hr>
             <li><a class="frontline" href="/others"><h1>Others</h1></a></li><hr>
+            <li><a class="frontline" href="/adminpost"><h1>Admin post</h1></a></li><hr>
             <li><a class="frontline" href="/allproduct"><h1>Overall database</h1></a></li>
         </ul>
 </div>
