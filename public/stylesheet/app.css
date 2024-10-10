@@ -7,7 +7,7 @@ body{
     text-align: center;
     align-content: center;
     max-width: 800px;
-    margin: auto;
+    margin: 0px auto;
 }
 
 
@@ -504,6 +504,22 @@ a {
     background-color: red;
     color: white;
     text-align: center;
+}
+.success{
+    margin: 2px auto;
+    height: 30px;
+    width: 100%;
+    color: black;
+    border: white;
+    background-color: green;
+}
+.error{
+    margin: 2px auto;
+    height: 30px;
+    width: 100%;
+    background-color: red;
+    color: white;
+    border: white;
 }
 @media(max-width: 600px){
     /* .homepage {

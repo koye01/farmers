@@ -17,6 +17,7 @@ var express = require("express"),
     var productRoute = require("./routes/auth");
     var dynamicRoute = require("./routes/allproduct");
     var commentRoute = require("./routes/comment");
+const flash = require("connect-flash/lib/flash");
 
 mongoose.connect("mongodb://localhost/Product");
 app.use(bodyParser.urlencoded({extended: true}));
@@ -31,6 +32,7 @@ app.use(expressSession({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -45,6 +47,8 @@ app.use(async function(req, res, next){
             console.log(err.message);
         }
     }
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
     res.locals.currentUser = req.user;
     next();
 })

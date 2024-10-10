@@ -6,8 +6,10 @@ middlewareObj = {};
 
 middlewareObj.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated()){
+        req.flash("success", "successfully logged-in");
         return next();
     }else{
+        req.flash("error", "please login first");
         res.redirect("/login")
     }
 }
@@ -19,15 +21,17 @@ var edit =await Product.findById(req.params.id);
         if(edit.author.id.equals(req.user._id) || req.user.isAdmin){
             next();
         }else{
+            req.flash("error", "you are not authorized to edit");
             res.redirect("back");
         }
     }else{
         if(!req.isAuthenticated()){
+            req.flash("error", "please login first");
             res.redirect("/login");
         }
     }
     }catch(err){
-        console.log(err);
+        req.flash("error", err.message);
     }
     
 }
@@ -39,13 +43,15 @@ middlewareObj.commentOwner = async function(req, res, next){
             if(edit.author.id.equals(req.user._id) || req.user.isAdmin){
                 next();
             }else{
+                req.flash("error", "you are not authorized to edit")
                 res.redirect("back");
             }
         }else{
+            req.flash("error", "please login first");
             res.redirect("/login");
         }
     }catch(err){
-        console.log(err);
+        req.flash("error", err.message);
     }
 }
 module.exports = middlewareObj;

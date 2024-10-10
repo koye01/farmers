@@ -43,6 +43,7 @@ router.post("/:id/comment", middleware.isLoggedIn, async function(req, res){
                 userComment.notifications.push(notification);
                 userComment.save();
         }
+        req.flash("success", "you successfully added your comment")
         res.redirect("/" + product._id);
     }catch(err){
         console.log(err);
@@ -57,6 +58,7 @@ router.get("/:id/comment/:comment_id/edit", middleware.commentOwner, async funct
 router.put("/:id/comment/:comment_id", middleware.commentOwner, async function(req, res){
     try{
         var update = await Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment);
+        req.flash("success", "comment successfully updated");
         res.redirect("/" + req.params.id);
     }catch(err){
         console.log(err);
@@ -67,11 +69,12 @@ router.put("/:id/comment/:comment_id", middleware.commentOwner, async function(r
 router.delete("/:id/comment/:comment_id", middleware.commentOwner, async function(req, res){
     try{
         var removeComment = await Comment.findByIdAndRemove(req.params.comment_id);
+        req.flash("error", "comment successfully deleted");
         res.redirect("/" + req.params.id);
     }catch(err){
         console.log(err)
     }
-})
+});
 
 
 

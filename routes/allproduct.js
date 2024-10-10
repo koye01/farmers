@@ -182,9 +182,9 @@ router.post("/", multiUpload, async function(req, res){
                 follower.notifications.push(notification);
                 follower.save();
             }
-            
+            req.flash("success", newProduce.name, "successfully uploaded");
             //redirect back to allproducts page
-            res.redirect("/allproduct");
+            res.redirect("/");
     }catch(err){
         console.log(err)
     }

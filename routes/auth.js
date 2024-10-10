@@ -31,21 +31,23 @@ router.get("/register", async function(req, res){
 });
 router.post("/register", async function(req, res){
         try{
+        var image = "/profile/" + req.file.filename;
         var username = req.body.username;
         var email = req.body.email;
         phone = req.body.phone;
         var description = req.body.description;
         var fullname = req.body.fullname;
-        var newUser = {username: username, email: email, secretCode: secretCode, 
+        var newUser = {image: image, username: username, email: email, secretCode: secretCode, 
             description: description, fullname: fullname, phone: phone};
         var secretCode = req.body.secretCode;
         if(secretCode === "1980"){
             newUser.isAdmin = true;
         }
         var user = await User.register(newUser, req.body.password);
+        req.flash("success", user.username,+ "!", "Your registration was successful")
             res.redirect("/login");
         } catch(err){
-        console.log(err);
+        req.flash("error", err.message);
         res.render("form/register");
     }
 });
@@ -59,6 +61,7 @@ router.post("/login", passport.authenticate("local", {
 }), function(req, res){});
 
 router.get("/logout", function(req, res){
+    req.flash("success", "successfully logged out");
     req.logOut(function(err, out){
         if(err){
             console.log(err)
@@ -82,7 +85,30 @@ router.get("/user/:id", async function(req, res){
         return res.redirect('back');
     }
 });
-
+//Profile edit page
+router.get("/user/:id/edit", async function(req, res){
+    try{
+        var editProf = await User.findById(req.params.id);
+        res.render("profileedit", {editProf})
+    }catch(err){
+        console.log(err);
+    }
+});
+//Profile post edit page
+router.put("/user/:id", upload.single("image"), async function(req, res){
+    try{
+        var image = "/profile/" + req.file.filename;
+        var fullname = req.body.fullname;
+        var description = req.body.description;
+        var phone = req.body.phone
+        var update = {image: image, fullname: fullname, description: description, phone: phone}
+        var user = await User.findByIdAndUpdate(req.params.id, update);
+        req.flash('success', 'profile successfully updated');
+        res.redirect("/user/"+ req.params.id);
+    }catch(err){
+        console.log(err);
+    }
+});
 //follow user
 router.get('/follow/:id', middleware.isLoggedIn, async function(req, res) {
     try {
@@ -93,6 +119,7 @@ router.get('/follow/:id', middleware.isLoggedIn, async function(req, res) {
         });
         user.followers = unique;
         user.save();
+        req.flash("success", unique.username, "started following you");
         res.redirect('/user/' + req.params.id);
     } catch(err) {
         console.log(err);
@@ -107,6 +134,7 @@ router.get('/unfollow/:id', middleware.isLoggedIn, async function(req, res) {
         var remove = user.followers.indexOf(req.user._id);
         user.followers.splice(remove, 1);
         user.save();
+        req.flash("success", "you successfully unfollowed", remove.username);
         res.redirect('/user/' + req.params.id);
     } catch(err) {
         console.log(err);
@@ -151,29 +179,8 @@ router.get('/notifications/com/:id', middleware.isLoggedIn, async function(req, 
     }
 });
 
-//Profile edit page
-router.get("/user/:id/edit", async function(req, res){
-    try{
-        var editProf = await User.findById(req.params.id);
-        res.render("profileedit", {editProf})
-    }catch(err){
-        console.log(err);
-    }
-});
 
-//Profile post edit page
-router.put("/user/:id", upload.single("image"), async function(req, res){
-    try{
-        var image = "/profile/" + req.file.filename;
-        var fullname = req.body.fullname;
-        var description = req.body.description;
-        var phone = req.body.phone
-        var update = {image: image, fullname: fullname, description: description, phone: phone}
-        var user = await User.findByIdAndUpdate(req.params.id, update);
-        res.redirect("/user/"+ req.params.id);
-    }catch(err){
-        console.log(err);
-    }
-});
+
+
 
 module.exports = router;

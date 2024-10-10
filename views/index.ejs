@@ -12,6 +12,17 @@
             <button>search</button>
         </form>
 </div>
+<% if(success && success.length > 0){%>
+    <div class="success">
+        <%= success %>
+    </div>
+    
+<%}else if(error && error.length > 0){%>
+    <div class="error">
+        <% error %>
+    </div>
+    
+<% } %>
 <div>
     <div class="rectangle">
         <div class="welcome">

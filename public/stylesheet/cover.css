@@ -14,16 +14,22 @@ a {
 li {
     list-style: none;
 }
+li a {
+    color: white;
+}
+
 .cover {
     width: 80%;
     height: auto;
     margin: 20px auto;
     padding: 5px 5px;
     border: thin solid rgb(28, 29, 27);
-    box-shadow: 5px 5px 20px blue;
+    box-shadow: 5px 5px 20px white;
     margin-top: 10vh;
 }
 .headings{
+    background-image: url("/pics/banana.jpg");
+    background-position-x: center ;
     background-color: rgb(226, 223, 233);
     /* background-color: rgb(116, 110, 110); */
     border-radius: 4px;
@@ -55,7 +61,7 @@ button{
     margin-top: 20px;
 }
 ul {
-    background-image: url("/pics/flower.jpg");
+    background-position: center;
     padding: 15px 0px;
     margin: 0 10px;
     text-align: center;
@@ -109,7 +115,22 @@ ul {
     /* border: thin solid green; */
     color: rgb(197, 240, 6);
 }
-
+.success{
+    margin: 2px auto;
+    height: 30px;
+    width: 70%;
+    color: black;
+    border: white;
+    background-color: green;
+}
+.error{
+    margin: 2px auto;
+    height: 30px;
+    width: 70%;
+    background-color: red;
+    color: white;
+    border: white;
+}
 @keyframes frontPageAnimation {
     0% {
         opacity: 0;

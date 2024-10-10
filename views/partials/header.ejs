@@ -71,6 +71,20 @@
         </div>
         
     </div>
+    <% if(success && success.length > 0){ %>
+        <div class="success">
+            <%=success%>
+        </div>
+    <% }else if(error && error.length > 0){%>
+        <div class="error">
+           <%=error%> 
+        </div>
+        
+    <%}%>
+    
+        
+        
+    
     <script>
         var collapse = document.getElementsByClassName("para");
         var info = collapse[0];
