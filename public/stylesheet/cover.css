@@ -119,9 +119,8 @@ ul {
     margin: 2px auto;
     height: 30px;
     width: 70%;
-    color: black;
-    border: white;
-    background-color: green;
+    color: white;
+    border-color: thin solid white;
 }
 .error{
     margin: 2px auto;

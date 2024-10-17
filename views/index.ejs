@@ -12,9 +12,9 @@
             <button>search</button>
         </form>
 </div>
-<% if(success && success.length > 0){%>
+<% if(currentUser){%>
     <div class="success">
-        <%= success %>
+         logged in as <%= currentUser.username %>
     </div>
     
 <%}else if(error && error.length > 0){%>

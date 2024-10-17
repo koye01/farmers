@@ -29,7 +29,7 @@ var upload = multer({storage: storage});
 router.get("/register", async function(req, res){
     res.render("form/register");
 });
-router.post("/register", async function(req, res){
+router.post("/register", upload.single("image"), async function(req, res){
         try{
         var image = "/profile/" + req.file.filename;
         var username = req.body.username;
@@ -44,7 +44,7 @@ router.post("/register", async function(req, res){
             newUser.isAdmin = true;
         }
         var user = await User.register(newUser, req.body.password);
-        req.flash("success", user.username,+ "!", "Your registration was successful")
+        req.flash("success", user.username, "! ", "Your registration was successful")
             res.redirect("/login");
         } catch(err){
         req.flash("error", err.message);
@@ -61,11 +61,11 @@ router.post("/login", passport.authenticate("local", {
 }), function(req, res){});
 
 router.get("/logout", function(req, res){
-    req.flash("success", "successfully logged out");
     req.logOut(function(err, out){
         if(err){
             console.log(err)
         }
+    req.flash("success", "successfully logged out");
         res.redirect("/");
     });
 });
@@ -134,7 +134,7 @@ router.get('/unfollow/:id', middleware.isLoggedIn, async function(req, res) {
         var remove = user.followers.indexOf(req.user._id);
         user.followers.splice(remove, 1);
         user.save();
-        req.flash("success", "you successfully unfollowed", remove.username);
+        req.flash("success", "you successfully unfollowed", user.username);
         res.redirect('/user/' + req.params.id);
     } catch(err) {
         console.log(err);

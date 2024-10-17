@@ -14,10 +14,11 @@ var express = require("express"),
     passportLocalMongoose = require("passport-local-mongoose"),
     expressSession = require("express-session")
 
+    var coverRoute   = require("./routes/cover");
     var productRoute = require("./routes/auth");
     var dynamicRoute = require("./routes/allproduct");
     var commentRoute = require("./routes/comment");
-const flash = require("connect-flash/lib/flash");
+    var flash = require("connect-flash");
 
 mongoose.connect("mongodb://localhost/Product");
 app.use(bodyParser.urlencoded({extended: true}));
@@ -70,9 +71,11 @@ var multiUpload = upload.fields([{ name: "image", maxCount: 5}]);
 //     image: "pics\chicks.jpg",
 //     description: "These are the early day old chicks that i use to sell"
 // });
+app.use(coverRoute);
 app.use(productRoute);
 app.use(dynamicRoute);
 app.use(commentRoute);
+
 
 
 
