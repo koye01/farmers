@@ -90,9 +90,13 @@
             <%}%>
             
             <div class="profile-details">
+                <h3><%= user.username %>'s page </h3><hr>
                 <p>Phone number: <%= user.phone %></p>
                 <p>Email: <%= user.email %></p>
-                <p>Full name: <%= user.fullname %></p>
+                <%if(currentUser){%>
+                    <p>Full name: <%= user.fullname %></p>
+                <%}%>
+                
                 <p>Brief description: <%= user.description %></p>
             </div>
         </div>
